@@ -1,23 +1,33 @@
-import * as grpc from '@grpc/grpc-js';
-import * as protoLoader from '@grpc/proto-loader';
-import {Sword} from "./types/Sword";
+const grpc = require('@grpc/grpc-js');
+const protoLoader = require('@grpc/proto-loader');
+const swordService = require('./services/swordService');
+const oilService = require('./services/oilService');
+const decoctionService = require('./services/decoctionService');
 
-const packageDefinition = protoLoader.loadSync('src/grpc/proto/witcher.proto', {});
-const witcherProto = grpc.loadPackageDefinition(packageDefinition) as any;
+const packageDefinition = protoLoader.loadSync('src/grpc/proto/witcher.proto', {
+    keepCase: true,
+    longs: String,
+    enums: String,
+    defaults: true,
+    oneofs: true
+});
 
-if (witcherProto && witcherProto.WitcherService) {
-    const server = new grpc.Server();
+const witcherProto = grpc.loadPackageDefinition(packageDefinition);
 
-    server.addService(witcherProto.WitcherService.service, {
-        GetItems: (_: any, callback: any) => {
-            callback(null, { items: [{ id: '1', name: 'Addan Deith', type: 'sword', material: 'silver', description: 'Can be found on the remains of Mourntart during Contract: The Merry Widow, or purchased from the Scoia\'tael merchant in Oxenfurt forest, after he is rescued.' }] });
-        },
-    });
+const server = new grpc.Server();
 
-    server.bindAsync('localhost:50051', grpc.ServerCredentials.createInsecure(), () => {
-        console.log('gRPC server running on http://localhost:50051');
+server.addService(witcherProto.witcherAPI.SwordService.service, swordService);
+server.addService(witcherProto.witcherAPI.OilService.service, oilService);
+server.addService(witcherProto.witcherAPI.DecoctionService.service, decoctionService);
 
-    });
-} else {
-    console.error("WitcherService not found in loaded proto definition.");
-}
+server.bindAsync(
+    '127.0.0.1:9191',
+    grpc.ServerCredentials.createInsecure(),
+    (err: Error | null, port: number) => {
+        if (err) {
+            console.error(err);
+        } else {
+            console.log(`gRPC server started on port ${port}`);
+        }
+    }
+);

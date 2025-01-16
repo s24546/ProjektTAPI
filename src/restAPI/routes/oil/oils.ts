@@ -2,41 +2,51 @@ import express, { Request, Response, Router } from 'express';
 import { oils } from '../../../data/oils';
 import { Oil } from '../../../interfaces/oilInterface';
 import {ItemType} from "../../../interfaces/itemInterface";
+import {swords} from "../../../data/swords";
 
 export const oilsRouter: Router = express.Router();
 
-// GET all oils
-oilsRouter.get('/oils', (req: Request, res: Response) => {
-    try {
-        if (!oils || oils.length === 0) {
-            res.status(204).json({ error: 'No content, empty oils list' });
-            return;
-        }
-
-        res.status(200).json({
-            oilsList: oils.map(oil => ({
-                ...oil,
-                _links: {
-                    self: { href: `${req.protocol}://${req.get('host')}/oils/${oil.id}` }
-                }
-            })),
+// GET oils
+oilsRouter.get('/', (req: Request, res: Response) => {
+    if (!req.query.ingredient) {
+        return res.status(200).json({
+            oils: oils,
             _links: {
-                self: { href: `${req.protocol}://${req.get('host')}/oils` }
+                self: { href: `${req.protocol}://${req.get('host')}${req.originalUrl}` },
+                list: { href: `${req.protocol}://${req.get('host')}/oils` }
+            }
+        });
+    }
+
+    const ingredient = req.query.ingredient as string;
+
+    try {
+        const filteredOils = oils.filter(oil => {
+            const matches = oil.ingredients.toLowerCase().includes(ingredient.toLowerCase());
+            return matches;
+        });
+        res.status(200).json({
+            oils: filteredOils,
+            _links: {
+                self: { href: `${req.protocol}://${req.get('host')}${req.originalUrl}` },
+                list: { href: `${req.protocol}://${req.get('host')}/oils` }
             }
         });
     } catch (error) {
-        console.error('Error processing oils data:', error);
-        res.status(500).json({ error: 'Error processing oils data' });
+        console.error('Error filtering oils:', error);
+        res.status(500).json({ error: 'Error filtering oils' });
     }
 });
 
 // GET oil by ID
-oilsRouter.get('/oils/:id', (req: Request, res: Response) => {
-    const oilId = req.params.id;
+oilsRouter.get('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
 
     try {
-        const oil = oils.find(o => o.id === oilId);
-
+        const oil = oils.find(o => o.id === idParam)
         if (oil) {
             res.status(200).json({
                 ...oil,
@@ -55,7 +65,7 @@ oilsRouter.get('/oils/:id', (req: Request, res: Response) => {
 });
 
 // POST new oil
-oilsRouter.post('/oils', (req: Request, res: Response) => {
+oilsRouter.post('/', (req: Request, res: Response) => {
     const { name, description, ingredients, charges }: Oil = req.body;
 
     if (!name || !description || !ingredients || charges === undefined) {
@@ -65,7 +75,7 @@ oilsRouter.post('/oils', (req: Request, res: Response) => {
 
     try {
         const newOil: Oil = {
-            id: String(oils.length + 1),
+            id: Number(oils.length + 1),
             name,
             description,
             type: ItemType.OIL,
@@ -90,8 +100,11 @@ oilsRouter.post('/oils', (req: Request, res: Response) => {
 });
 
 // PUT update oil
-oilsRouter.put('/oils/:id', (req: Request, res: Response) => {
-    const oilId = req.params.id;
+oilsRouter.put('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
     const { name, description, ingredients, charges }: Oil = req.body;
 
     if (!name || !description || !ingredients || charges === undefined) {
@@ -100,7 +113,7 @@ oilsRouter.put('/oils/:id', (req: Request, res: Response) => {
     }
 
     try {
-        const oilIndex = oils.findIndex(o => o.id === oilId);
+        const oilIndex = oils.findIndex(o => o.id === idParam);
 
         if (oilIndex === -1) {
             res.status(404).json({ error: 'Oil not found' });
@@ -130,11 +143,14 @@ oilsRouter.put('/oils/:id', (req: Request, res: Response) => {
 });
 
 // DELETE oil
-oilsRouter.delete('/oils/:id', (req: Request, res: Response) => {
-    const oilId = req.params.id;
+oilsRouter.delete('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
 
     try {
-        const oilIndex = oils.findIndex(o => o.id === oilId);
+        const oilIndex = oils.findIndex(o => o.id === idParam);
 
         if (oilIndex === -1) {
             res.status(404).json({ error: 'Oil not found' });
@@ -155,24 +171,28 @@ oilsRouter.delete('/oils/:id', (req: Request, res: Response) => {
     }
 });
 
-// GET oils by ingredient
-oilsRouter.get('/oils/ingredients/:ingredient', (req: Request, res: Response) => {
-    const ingredient = req.params.ingredient.toLowerCase();
+// PATCH oils
+oilsRouter.patch('/:id', (req: Request, res: Response) => {
+    const id = parseInt(req.params.id);
+    const updates = req.body;
 
     try {
-        const filteredOils = oils.filter(oil =>
-            oil.ingredients.toLowerCase().includes(ingredient)
-        );
+        const oilIndex = oils.findIndex(o => o.id === id);
+        if (oilIndex === -1) {
+            return res.status(404).json({ error: 'Oil not found' });
+        }
 
+        oils[oilIndex] = { ...oils[oilIndex], ...updates };
         res.status(200).json({
-            oils: filteredOils,
+            oil: oils[oilIndex],
             _links: {
                 self: { href: `${req.protocol}://${req.get('host')}${req.originalUrl}` },
                 list: { href: `${req.protocol}://${req.get('host')}/oils` }
             }
         });
     } catch (error) {
-        console.error('Error filtering oils:', error);
-        res.status(500).json({ error: 'Error filtering oils' });
+        console.error('Error updating oil:', error);
+        res.status(500).json({ error: 'Error updating oil' });
     }
 });
+

@@ -7,7 +7,7 @@
     "rootDir": "./src",
     "strict": true
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts","src/**/*.proto"],
   "exclude": ["node_modules"]
 }
 

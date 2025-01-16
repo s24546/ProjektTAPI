@@ -15,14 +15,14 @@ const app = express();
 
 // CORS Configuration
 const corsOptions: CorsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'http://localhost:8080',
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'X-Content-Type-Options', 'Cache-Control'],
     credentials: true
 };
 
 // Middleware
-app.use(express.json());
+app.use(express.json()); ////co robi ta linijka? automatycznie przekształca dane JSON na obiekt JavaScript
 app.use(cors(corsOptions));
 
 // Middleware to set headers for all responses
@@ -45,17 +45,25 @@ const swaggerOptions = {
         },
         servers: [
             {
-                url: 'http://localhost:3000',
+                url: 'http://localhost:8080',
             },
         ],
     },
     apis: ['restAPI/routes/**/*.js', 'restAPI/routes/**/*.ts'],
 };
 
+app.use((req: Request, res: Response, next: NextFunction) => {
+    console.log('=========================================');
+    console.log('Incoming request:', req.method, req.url);
+    console.log('Query parameters:', req.query);
+    console.log('=========================================');
+    next();
+});
+
 // Router registrations
-app.use('', swordsRouter);
-app.use('', oilsRouter);
-app.use('', decoctionsRouter);
+app.use('/api/swords', swordsRouter);
+app.use('/api/oils', oilsRouter);
+app.use('/api/decoctions', decoctionsRouter);
 
 // Root endpoint
 app.get('/', (req, res) => {
@@ -63,8 +71,8 @@ app.get('/', (req, res) => {
 });
 
 // Start server
-app.listen(3000, () => {
-    console.log('Server is running on http://localhost:3000');
+app.listen(8080, () => {
+    console.log('Server is running on http://localhost:8080');
 });
 
 export default app;

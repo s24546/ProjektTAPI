@@ -3,7 +3,7 @@ import { ItemType } from '../interfaces/itemInterface';
 
 export const decoctions: (Decoction)[] = [
     {
-        id: '1',
+        id: 1,
         name: 'Basilisk decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Basilisk mutagen, 1 × Blowball, 1 × Fool\'s parsley leaves, 1 × Beggartick blossoms',
@@ -12,7 +12,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 40
     },
     {
-        id: '2',
+        id: 2,
         name: 'Leshen decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Leshen mutagen, 1 × Moleyarrow, 1 × Pringrape',
@@ -21,7 +21,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 70
     },
     {
-        id: '3',
+        id: 3,
         name: 'Alghoul decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 5 × Lesser red mutagen, 1 × Alghoul bone marrow, 1 × Buckthorn',
@@ -30,7 +30,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '4',
+        id: 4,
         name: 'Ancient leshen decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Ancient leshen mutagen, 1 × Mandrake root, 1 × Ginatia petals, 1 × Honeysuckle',
@@ -39,7 +39,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '5',
+        id: 5,
         name: 'Arachas decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Arachas mutagen, 1 × White myrtle petals',
@@ -48,7 +48,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '6',
+        id: 6,
         name: 'Archgriffin decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Archgriffin mutagen, 1 × Ribleaf, 1 × Blowball',
@@ -57,7 +57,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '7',
+        id: 7,
         name: 'Chort decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Chort mutagen, 1 × Puffball, 1 × Cortinarius',
@@ -66,7 +66,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '8',
+        id: 8,
         name: 'Cockatrice decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Cockatrice mutagen, 1 × Crow\'s eye',
@@ -75,7 +75,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '9',
+        id: 9,
         name: 'Doppler decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Doppler mutagen, 1 × Han fiber, 1 × Longrube',
@@ -84,7 +84,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '10',
+        id: 10,
         name: 'Earth elemental decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Earth elemental mutagen, 1 × Balisse fruit, 1 × Pringrape',
@@ -93,7 +93,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '11',
+        id: 11,
         name: 'Ekhidna decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Ekhidna mutagen, 1 × Ribleaf, 1 × Berbercane fruit',
@@ -102,7 +102,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '12',
+        id: 12,
         name: 'Ekimmara decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Ekimmara mutagen, 1 × White myrtle petals, 1 × Mandrake root',
@@ -111,7 +111,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '13',
+        id: 13,
         name: 'Fiend decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Fiend mutagen, 1 × Hellebore petals, 1 × Fool\'s parsley leaves, 1 × Arenaria',
@@ -120,7 +120,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '14',
+        id: 14,
         name: 'Foglet decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Foglet mutagen, 1 × Fool\'s parsley leaves, 1 × Blowball',
@@ -129,7 +129,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '15',
+        id: 15,
         name: 'Grave hag decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Grave hag mutagen, 1 × Ginatia petals, 1 × Honeysuckle',
@@ -138,7 +138,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '16',
+        id: 16,
         name: 'Griffin decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Griffin mutagen, 1 × Berbercane fruit, 1 × Balisse fruit',
@@ -147,7 +147,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '17',
+        id: 17,
         name: 'Katakan decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Katakan mutagen, 1 × Crow\'s eye, 1 × Cortinarius',
@@ -156,7 +156,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '18',
+        id: 18,
         name: 'Nekker decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Nekker mutagen, 1 × Fool\'s parsley leaves, 1 × White myrtle petals',
@@ -165,7 +165,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '19',
+        id: 19,
         name: 'Nightwraith decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Nightwraith mutagen, 1 × Blowball, 1 × Ginatia petals',
@@ -174,7 +174,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '20',
+        id: 20,
         name: 'Noonwraith decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Noonwraith mutagen, 1 × Hellebore petals, 1 × Mandrake root',
@@ -183,7 +183,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '21',
+        id: 21,
         name: 'Succubus decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Succubus mutagen, 1 × White myrtle petals, 1 × Arenaria',
@@ -192,7 +192,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '22',
+        id: 22,
         name: 'Troll decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Troll mutagen, 1 × Longrube, 1 × Pringrape',
@@ -201,7 +201,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '23',
+        id: 23,
         name: 'Wraith decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Wraith mutagen, 1 × Moleyarrow, 1 × Cortinarius',
@@ -210,7 +210,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '24',
+        id: 24,
         name: 'Wyvern decoction',
         type: ItemType.DECOCTION,
         ingredients: '1 × Dwarven spirit, 1 × Wyvern mutagen, 1 × Han fiber, 1 × Berbercane fruit',
@@ -219,7 +219,7 @@ export const decoctions: (Decoction)[] = [
         toxicity: 50
     },
     {
-        id: '25',
+        id: 25,
         name: 'The Decoctions of the Grasses',
         type: ItemType.DECOCTION,
         ingredients: '1 × Forktail spinal fluid, 1 × Manticore poison gland, 1 × Albino bruxa tongue, 1 × Bryonia, 1 × Ribleaf, 1 × Mandrake',

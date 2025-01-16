@@ -2,7 +2,7 @@ import { Oil } from '../interfaces/oilInterface';
 import { ItemType } from '../interfaces/itemInterface';
 export const oils: (Oil)[] = [
     {
-        id: '1',
+        id: 1,
         name: 'Superior necrophage oil',
         type: ItemType.OIL,
         ingredients: '5 × Alchemy paste, 1 × Enhanced necrophage oil, 1 × Devourer\'s blood, 1 × Beggartick blossoms, 1 × Arenaria, 1 × Pringrape, 1 × Hydragenum',
@@ -11,7 +11,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '2',
+        id: 2,
         name: 'Superior ogroid oil',
         type: ItemType.OIL,
         ingredients: '2 × Alchemy paste, 1 × Enhanced ogroid oil, 1 × Cave troll liver, 1 × Arenaria, 1 × Ranogrin, 1 × Ribleaf, 1 × Aether',
@@ -20,7 +20,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '3',
+        id: 3,
         name: 'Superior relict oil',
         type: ItemType.OIL,
         ingredients: '4 × Alchemy paste, 1 × Enhanced relict oil, 1 × Devourer\'s blood, 1 × Hop umbels, 1 × Beggartick blossoms, 1 × Green mold, 1 × Nigredo',
@@ -29,7 +29,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '4',
+        id: 4,
         name: 'Superior vampire oil',
         type: ItemType.OIL,
         ingredients: '2 × Alchemy paste, 1 × Enhanced vampire oil, 1 × Fifth essence, 1 × Wine stone, 1 × Cortinarius, 1 × Wolfsbane, 1 × Vermilion',
@@ -38,7 +38,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '5',
+        id: 5,
         name: 'Vampire oil',
         type: ItemType.OIL,
         ingredients: '2 × Dog tallow, 4 × Ducal water',
@@ -47,7 +47,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '6',
+        id: 6,
         name: 'Superior specter oil',
         type: ItemType.OIL,
         ingredients: '1 × Alchemy paste, 1 × Enhanced specter oil, 1 × Essence of wraith, 1 × Longrube, 1 × Mistletoe, 1 × Ergot seeds, 1 × Rebis',
@@ -56,7 +56,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '7',
+        id: 7,
         name: 'Beast oil',
         type: ItemType.OIL,
         ingredients: '1 × Dog tallow, 1 × Wolf\'s liver',
@@ -65,7 +65,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '8',
+        id: 8,
         name: 'Cursed oil',
         type: ItemType.OIL,
         ingredients: '1 × Dog tallow, 4 × Wolfsbane',
@@ -74,7 +74,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '9',
+        id: 9,
         name: 'Draconid oil',
         type: ItemType.OIL,
         ingredients: '1 × Dog tallow, 4 × Ergot seeds',
@@ -83,7 +83,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '10',
+        id: 10,
         name: 'Elementa oil',
         type: ItemType.OIL,
         ingredients: '1 × Dog tallow, 4 × Puffball',
@@ -92,7 +92,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '11',
+        id: 11,
         name: 'Enhanced Hanged Man\'s Venom',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Hanged Man\'s Venom, 1 × Han fiber, 1 × Nekker eye, 1 × Fool\'s parsley leaves, 1 × Arenaria, 1 × Mandrake root',
@@ -101,7 +101,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '12',
+        id: 12,
         name: 'Enhanced beast oil',
         type: ItemType.OIL,
         ingredients: '5 × Bear fat, 1 × Beast oil, 1 × Bear hide, 1 × Celandine, 1 × Puffball, 1 × Bison grass',
@@ -110,7 +110,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '13',
+        id: 13,
         name: 'Enhanced cursed oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Cursed oil, 1 × Ekimmara hide, 1 × Puffball, 1 × Wolfsbane, 1 × Balisse fruit, 1 × Wolf\'s liver',
@@ -119,7 +119,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '14',
+        id: 14,
         name: 'Enhanced draconid oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Draconid oil, 1 × Cockatrice stomach, 1 × Nekker warrior\'s liver, 1 × Moleyarrow, 1 × Arenaria, 1 × Bryonia',
@@ -128,7 +128,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '15',
+        id: 15,
         name: 'Enhanced elementa oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Elementa oil, 1 × Moleyarrow, 1 × Puffball, 1 × Allspice, 1 × Honeysuckle, 1 × Buckthorn',
@@ -137,7 +137,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '16',
+        id: 16,
         name: 'Enhanced hybrid oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Hybrid oil, 1 × Erynia eye, 1 × Ginatia petals, 1 × White myrtle petals, 1 × Hornwort, 1 × Bryonia',
@@ -146,7 +146,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '17',
+        id: 17,
         name: 'Enhanced insectoid oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Insectoid oil, 1 × Endrega heart, 1 × Puffball, 1 × Ranogrin, 1 × Hornwort, 1 × Honeysuckle',
@@ -155,7 +155,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '18',
+        id: 18,
         name: 'Enhanced necrophage oil',
         type: ItemType.OIL,
         ingredients: '4 × Bear fat, 1 × Necrophage oil, 1 × Rotfiend blood, 1 × Blowball, 1 × Arenaria, 1 × Pringrape, 1 × Cortinarius',
@@ -164,7 +164,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '19',
+        id: 19,
         name: 'Enhanced cursed oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Cursed oil, 1 × Ekimmara hide, 1 × Puffball, 1 × Wolfsbane, 1 × Balisse fruit, 1 × Wolf\'s liver',
@@ -173,7 +173,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '20',
+        id: 20,
         name: 'Enhanced draconid oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Draconid oil, 1 × Cockatrice stomach, 1 × Nekker warrior\'s liver, 1 × Moleyarrow, 1 × Arenaria, 1 × Bryonia',
@@ -182,7 +182,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '21',
+        id: 21,
         name: 'Enhanced elementa oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Elementa oil, 1 × Moleyarrow, 1 × Puffball, 1 × Allspice, 1 × Honeysuckle, 1 × Buckthorn',
@@ -191,7 +191,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '22',
+        id: 22,
         name: 'Enhanced hybrid oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Hybrid oil, 1 × Erynia eye, 1 × Ginatia petals, 1 × White myrtle petals, 1 × Hornwort, 1 × Bryonia',
@@ -200,7 +200,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '23',
+        id: 23,
         name: 'Enhanced insectoid oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Insectoid oil, 1 × Endrega heart, 1 × Puffball, 1 × Ranogrin, 1 × Hornwort, 1 × Honeysuckle',
@@ -209,7 +209,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '24',
+        id: 24,
         name: 'Enhanced necrophage oil',
         type: ItemType.OIL,
         ingredients: '4 × Bear fat, 1 × Necrophage oil, 1 × Rotfiend blood, 1 × Blowball, 1 × Arenaria, 1 × Pringrape, 1 × Cortinarius',
@@ -218,7 +218,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '25',
+        id: 25,
         name: 'Enhanced ogroid oil',
         type: ItemType.OIL,
         ingredients: '2 × Bear fat, 1 × Ogroid oil, 1 × Rock troll liver, 1 × Honeysuckle, 1 × Wolfsbane, 1 × Beggartick blossoms, 1 × Aether',
@@ -227,7 +227,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '26',
+        id: 26,
         name: 'Enhanced relict oil',
         type: ItemType.OIL,
         ingredients: '4 × Bear fat, 1 × Relict oil, 1 × Fiend dung, 1 × Hop umbels, 1 × Beggartick blossoms, 1 × Green mold, 1 × Nigredo',
@@ -236,7 +236,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '27',
+        id: 27,
         name: 'Enhanced specter oil',
         type: ItemType.OIL,
         ingredients: '1 × Bear fat, 1 × Specter oil, 1 × Essence of wraith, 1 × Longrube, 1 × Mistletoe, 1 × Ergot seeds, 1 × Rebis',
@@ -245,7 +245,7 @@ export const oils: (Oil)[] = [
     },
 
     {
-        id: '28',
+        id: 28,
         name: 'Enhanced vampire oil',
         type: ItemType.OIL,
         ingredients: '2 × Bear fat, 1 × Vampire oil, 1 × Fifth essence, 1 × Wine stone, 1 × Cortinarius, 1 × Wolfsbane, 1 × Vermilion',

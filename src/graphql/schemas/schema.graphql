@@ -1,0 +1,112 @@
+scalar Date
+
+type Sword {
+  id: Int
+  name: String
+  description: String
+  type: String
+  material: String
+}
+
+type Oil {
+  id: Int
+  name: String
+  description: String
+  type: String
+  ingredients: String
+  charges: Int
+}
+
+type Decoction {
+  id: Int
+  name: String
+  description: String
+  type: String
+  ingredients: String
+  duration: String
+  toxicity: Int
+}
+
+input SwordInput {
+  name: String
+  description: String
+  material: String
+}
+
+input OilInput {
+  name: String
+  description: String
+  ingredients: String
+  charges: Int
+}
+
+input DecoctionInput {
+  name: String
+  description: String
+  ingredients: String
+  duration: String
+  toxicity: Int
+}
+
+input StringFilter {
+  eq: String
+  contains: String
+  ne: String
+  notContains: String
+}
+
+input IntFilter {
+  eq: Int
+  gt: Int
+  lt: Int
+  gte: Int
+  lte: Int
+}
+
+input SwordFilter {
+  name: StringFilter
+  description: StringFilter
+  material: StringFilter
+}
+
+input OilFilter {
+  name: StringFilter
+  description: StringFilter
+  ingredients: StringFilter
+  charges: IntFilter
+}
+
+input DecoctionFilter {
+  name: StringFilter
+  description: StringFilter
+  ingredients: StringFilter
+  toxicity: IntFilter
+}
+
+input SortInput {
+  field: String
+  order: String
+}
+
+type Query {
+  swords(filter: SwordFilter, sort: SortInput, page: Int, pageSize: Int): [Sword]
+  sword(id: Int!): Sword
+  oils(filter: OilFilter, sort: SortInput, page: Int, pageSize: Int): [Oil]
+  oil(id: Int!): Oil
+  decoctions(filter: DecoctionFilter, sort: SortInput, page: Int, pageSize: Int): [Decoction]
+  decoction(id: Int!): Decoction
+}
+
+type Mutation {
+  addSword(input: SwordInput!): Sword
+  updateSword(id: Int!, input: SwordInput!): Sword
+  deleteSword(id: Int!): Sword
+
+  addOil(input: OilInput!): Oil
+  updateOil(id: Int!, input: OilInput!): Oil
+  deleteOil(id: Int!): Oil
+
+  addDecoction(input: DecoctionInput!): Decoction
+  updateDecoction(id: Int!, input: DecoctionInput!): Decoction
+  deleteDecoction(id: Int!): Decoction
+}

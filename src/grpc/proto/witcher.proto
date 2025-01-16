@@ -1,18 +1,109 @@
 syntax = "proto3";
 
-service WitcherService {
-    rpc GetItems (Empty) returns (ItemList);
+package witcherAPI;
+
+// Wspólne wiadomości dla filtrowania, sortowania i paginacji
+message Filter {
+    string field = 1;
+    string operator = 2;
+    string value = 3;
 }
 
-message Empty {}
+message Sort {
+    string field = 1;
+    bool ascending = 2;
+}
 
-message Item {
-    string id = 1;
+message Pagination {
+    int32 page = 1;
+    int32 pageSize = 2;
+}
+
+message Query {
+    repeated Filter filters = 1;
+    repeated Sort sorts = 2;
+    Pagination pagination = 3;
+}
+
+// Serwis dla mieczy
+service SwordService {
+    rpc ReadSword (SwordId) returns (Sword);
+    rpc ReadSwords (Query) returns (Swords);
+    rpc CreateSword (Sword) returns (Sword);
+    rpc UpdateSword (Sword) returns (Sword);
+    rpc DeleteSword (SwordId) returns (DeleteResponse);
+}
+
+message SwordId {
+    int32 id = 1;
+}
+
+message Sword {
+    int32 id = 1;
     string name = 2;
-    string type = 3;
-    string description = 4;
+    string description = 3;
+    string type = 4;
+    string material = 5;
 }
 
-message ItemList {
-    repeated Item items = 1;
+message Swords {
+    repeated Sword swords = 1;
+}
+
+// Serwis dla olejów
+service OilService {
+    rpc ReadOil (OilId) returns (Oil);
+    rpc ReadOils (Query) returns (Oils);
+    rpc CreateOil (Oil) returns (Oil);
+    rpc UpdateOil (Oil) returns (Oil);
+    rpc DeleteOil (OilId) returns (DeleteResponse);
+}
+
+message OilId {
+    int32 id = 1;
+}
+
+message Oil {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string ingredients = 5;
+    int32 charges = 6;
+}
+
+message Oils {
+    repeated Oil oils = 1;
+}
+
+// Serwis dla wywarów
+service DecoctionService {
+    rpc ReadDecoction (DecoctionId) returns (Decoction);
+    rpc ReadDecoctions (Query) returns (Decoctions);
+    rpc CreateDecoction (Decoction) returns (Decoction);
+    rpc UpdateDecoction (Decoction) returns (Decoction);
+    rpc DeleteDecoction (DecoctionId) returns (DeleteResponse);
+}
+
+message DecoctionId {
+    int32 id = 1;
+}
+
+message Decoction {
+    int32 id = 1;
+    string name = 2;
+    string description = 3;
+    string type = 4;
+    string ingredients = 5;
+    string duration = 6;
+    int32 toxicity = 7;
+}
+
+message Decoctions {
+    repeated Decoction decoctions = 1;
+}
+
+message DeleteResponse {
+    bool success = 1;
+    string message = 2;
 }

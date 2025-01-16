@@ -4,40 +4,51 @@ import { Sword } from '../../../interfaces/swordInterface';
 import {ItemType} from "../../../interfaces/itemInterface";
 export const swordsRouter: Router = express.Router();
 
-// GET all swords
-swordsRouter.get('/swords', (req: Request, res: Response) => {
-    try {
-        if (!swords || swords.length === 0) {
-            res.status(204).json({ error: 'No content, empty swords list' });
-            return;
-        }
+// GET swords
+swordsRouter.get('/', (req: Request, res: Response) => {
 
-        res.status(200).json({
-            swordsList: swords.map(sword => ({
-                ...sword,
-                _links: {
-                    self: { href: `${req.protocol}://${req.get('host')}/swords/${sword.id}` }
-                }
-            })),
+    if (!req.query.material) {
+        return res.status(200).json({
+            swords: swords,
             _links: {
-                self: { href: `${req.protocol}://${req.get('host')}/swords` },
-                silver: { href: `${req.protocol}://${req.get('host')}/swords/silver` },
-                steel: { href: `${req.protocol}://${req.get('host')}/swords/steel` }
+                self: { href: `${req.protocol}://${req.get('host')}${req.originalUrl}` },
+                list: { href: `${req.protocol}://${req.get('host')}/swords` }
+            }
+        });
+    }
+
+    const material = req.query.material as string;
+
+    if (material !== 'silver' && material !== 'steel') {
+        return res.status(400).json({ error: 'Material must be either "silver" or "steel"' });
+    }
+
+    try {
+        const filteredSwords = swords.filter(sword => {
+            return sword.material === material;
+        });
+        res.status(200).json({
+            swords: filteredSwords,
+            _links: {
+                self: { href: `${req.protocol}://${req.get('host')}${req.originalUrl}` },
+                list: { href: `${req.protocol}://${req.get('host')}/swords` }
             }
         });
     } catch (error) {
-        console.error('Error processing swords data:', error);
-        res.status(500).json({ error: 'Error processing swords data' });
+        console.error('Error filtering swords:', error);
+        res.status(500).json({ error: 'Error filtering swords' });
     }
 });
 
 // GET sword by ID
-swordsRouter.get('/swords/:id', (req: Request, res: Response) => {
-    const swordId = req.params.id;
+swordsRouter.get('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
 
     try {
-        const sword = swords.find(s => s.id === swordId);
-
+        const sword = swords.find(s => s.id === idParam);
         if (sword) {
             res.status(200).json({
                 ...sword,
@@ -56,7 +67,7 @@ swordsRouter.get('/swords/:id', (req: Request, res: Response) => {
 });
 
 // POST new sword
-swordsRouter.post('/swords', (req: Request, res: Response) => {
+swordsRouter.post('/', (req: Request, res: Response) => {
     const { name, description, material }: Sword = req.body;
 
     if (!name || !description || !material) {
@@ -66,7 +77,7 @@ swordsRouter.post('/swords', (req: Request, res: Response) => {
 
     try {
         const newSword: Sword = {
-            id: String(swords.length + 1),
+            id: Number(swords.length + 1),
             name,
             description,
             type: ItemType.SWORD,
@@ -90,21 +101,21 @@ swordsRouter.post('/swords', (req: Request, res: Response) => {
 });
 
 // PUT update sword
-swordsRouter.put('/swords/:id', (req: Request, res: Response) => {
-    const swordId = req.params.id;
-    const { name, description, material }: Sword = req.body;
+swordsRouter.put('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
 
+    const { name, description, material }: Sword = req.body;
     if (!name || !description || !material) {
-        res.status(400).json({ error: 'All fields are required' });
-        return;
+        return res.status(400).json({ error: 'All fields are required' });
     }
 
     try {
-        const swordIndex = swords.findIndex(s => s.id === swordId);
-
+        const swordIndex = swords.findIndex(s => s.id === idParam);
         if (swordIndex === -1) {
-            res.status(404).json({ error: 'Sword not found' });
-            return;
+            return res.status(404).json({ error: 'Sword not found' });
         }
 
         swords[swordIndex] = {
@@ -129,20 +140,19 @@ swordsRouter.put('/swords/:id', (req: Request, res: Response) => {
 });
 
 // DELETE sword
-swordsRouter.delete('/swords/:id', (req: Request, res: Response) => {
-    const swordId = req.params.id;
+swordsRouter.delete('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
 
     try {
-        const initialLength = swords.length;
-        const swordIndex = swords.findIndex(s => s.id === swordId);
-
+        const swordIndex = swords.findIndex(s => s.id === idParam);
         if (swordIndex === -1) {
-            res.status(404).json({ error: 'Sword not found' });
-            return;
+            return res.status(404).json({ error: 'Sword not found' });
         }
 
         swords.splice(swordIndex, 1);
-
         res.status(200).json({
             message: 'Sword deleted successfully',
             _links: {
@@ -155,22 +165,33 @@ swordsRouter.delete('/swords/:id', (req: Request, res: Response) => {
     }
 });
 
-// Filtrowanie po materiale
-swordsRouter.get('/swords/material/:material', (req: Request, res: Response) => {
-    const materialType = req.params.material as 'silver' | 'steel';
+//PATCH sword
+swordsRouter.patch('/:id', (req: Request, res: Response) => {
+    const idParam = Number(req.params.id);
+
+    if (isNaN(idParam)) {
+        return res.status(400).json({ error: 'Invalid ID format' });
+    }
+
+    const updates = req.body;
 
     try {
-        const filteredSwords = swords.filter(sword => sword.material === materialType);
+        const swordIndex = swords.findIndex(s => s.id === idParam); // używamy nowej nazwy zmiennej
+        if (swordIndex === -1) {
+            return res.status(404).json({ error: 'Sword not found' });
+        }
 
+        swords[swordIndex] = { ...swords[swordIndex], ...updates };
         res.status(200).json({
-            swords: filteredSwords,
+            sword: swords[swordIndex],
             _links: {
                 self: { href: `${req.protocol}://${req.get('host')}${req.originalUrl}` },
                 list: { href: `${req.protocol}://${req.get('host')}/swords` }
             }
         });
     } catch (error) {
-        console.error('Error filtering swords:', error);
-        res.status(500).json({ error: 'Error filtering swords' });
+        console.error('Error updating sword:', error);
+        res.status(500).json({ error: 'Error updating sword' });
     }
 });
+
